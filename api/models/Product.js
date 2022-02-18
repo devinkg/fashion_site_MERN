@@ -6,9 +6,10 @@ const ProductSchema = new mongoose.Schema(
         desc: { type: String, required: true },
         img: { type: String, required: true },
         categories: { type: Array },
-        size: { type: String },
-        color: { type: String },
+        size: { type: Array },
+        color: { type: Array },
         price: { type: Number, required: true },
+        inStock: { type: Boolean, default: true }
     },
     { timestamps: true } // timestamps is inbuilt function in mongoDB , it automatically generates record created Datetime and updated Datetime.
 );
