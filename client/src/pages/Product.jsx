@@ -138,32 +138,25 @@ const Product = () => {
             <Announcement />
             <Wrapper>
                 <ImageContainer>
-                    <Image src={product.img} />
+                    <Image src={product?.img} />
                 </ImageContainer>
                 <InfoContainer>
-                    <Title>{product.title}</Title>
-                    <Desc>Lorem ipsom dolor sit amet, consectetur adipiscing elit. Donec
-                        venenatics, dolor in finibus malesuada, lectus ipsum porta nunc, at
-                        iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget
-                        tristique tortor pretium ut. Curabitur elit justo, consequat id
-                        condimentum ac, volutpat ornare.
-                    </Desc>
-                    <Price>$ 20</Price>
+                    <Title>{product?.title}</Title>
+                    <Desc>{product?.desc}</Desc>
+                    <Price>$ {product.price}</Price>
                     <FilterContainer>
                         <Filter>
                             <FilterTitle>Color</FilterTitle>
-                            <FilterColor color="black"></FilterColor>
-                            <FilterColor color="darkblue"></FilterColor>
-                            <FilterColor color="gray"></FilterColor>
+                            {product?.color?.map((c) => (
+                                <FilterColor color={c} key={c} />
+                            ))}
                         </Filter>
                         <Filter>
                             <FilterTitle>Size</FilterTitle>
                             <FilterSize>
-                                <FilterSizeOption>XS</FilterSizeOption>
-                                <FilterSizeOption>S</FilterSizeOption>
-                                <FilterSizeOption>M</FilterSizeOption>
-                                <FilterSizeOption>L</FilterSizeOption>
-                                <FilterSizeOption>XL</FilterSizeOption>
+                                {product?.size?.map((s_value) => (
+                                    <FilterSizeOption key={s_value}>{s_value?.toUpperCase()}</FilterSizeOption>
+                                ))}
                             </FilterSize>
                         </Filter>
                     </FilterContainer>
