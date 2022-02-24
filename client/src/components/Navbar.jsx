@@ -5,6 +5,8 @@ import { Search, ShoppingCartOutlined } from '@mui/icons-material';
 import { mobile } from '../responsive';
 //Redux
 import { useSelector } from "react-redux";
+//Router
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
     height: 60px;
@@ -77,7 +79,7 @@ const Navbar = () => {
                 <Left>
                     <Language>EN</Language>
                     <SearchContainer>
-                        <Input placeholder='Search'/>
+                        <Input placeholder='Search' />
                         <Search style={{ color: "gray", fontSize: 16 }} />
                     </SearchContainer>
                 </Left>
@@ -87,11 +89,13 @@ const Navbar = () => {
                 <Right>
                     <MenuItem>REGISTER</MenuItem>
                     <MenuItem>SIGN IN</MenuItem>
-                    <MenuItem>
-                        <Badge badgeContent={quantity} color="primary">
-                            <ShoppingCartOutlined  color="action" />
-                        </Badge>
-                    </MenuItem>
+                    <Link to={"/cart"}>
+                        <MenuItem>
+                            <Badge badgeContent={quantity} color="primary">
+                                <ShoppingCartOutlined color="action" />
+                            </Badge>
+                        </MenuItem>
+                    </Link>
                 </Right>
             </Wrapper>
         </Container>
