@@ -9,6 +9,9 @@ import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
 //API
 import { publicRequest } from '../requestMethods';
+//Redux
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -122,6 +125,7 @@ const Product = () => {
     const [quantity, setQuantity] = useState(1);
     const [color, setColor] = useState("");
     const [size, setSize] = useState("");
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const getProduct = async () => {
@@ -144,7 +148,9 @@ const Product = () => {
     }
 
     const handleClick = () => {
-        //Update the cart
+        dispatch(
+            addProduct({ ...product, quantity: quantity, color: color, size: size })
+        )
     }
 
     return (
