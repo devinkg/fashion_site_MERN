@@ -166,7 +166,7 @@ const Cart = () => {
     const onToken = (token) => {
         setStripeToken(token);
     }
-  
+
     useEffect(() => {
         const makeRequest = async () => {
             try {
@@ -179,7 +179,7 @@ const Cart = () => {
                 });
             } catch (err) { }
         }
-        stripeToken && cart?.total >=1 && makeRequest();
+        stripeToken && cart?.total >= 1 && makeRequest();
     }, [stripeToken, cart.total, history])
 
     return (
