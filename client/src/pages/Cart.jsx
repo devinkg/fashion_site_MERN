@@ -175,7 +175,10 @@ const Cart = () => {
                     amount: cart.total * 100,
                 });
                 history("/success", {
-                    data: res.data
+                    state: {
+                        stripeData: res.data,
+                        products: cart,
+                    }
                 });
             } catch (err) { }
         }
