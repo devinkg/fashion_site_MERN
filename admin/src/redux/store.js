@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReducer from "./userRedux";
 import {
     persistStore,
@@ -18,8 +18,9 @@ const persistConfig = {
     storage: storage,
 }
 
+const rootReducer = combineReducers({ user: userReducer });
 
-const persistedReducer = persistReducer(persistConfig, userReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 /* REFER (ISSUE: store.dispatch is not a function)
     https://stackoverflow.com/a/70164070/9516745 
