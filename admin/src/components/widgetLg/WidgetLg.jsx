@@ -33,6 +33,11 @@ export default function WidgetLg() {
     return userData?.username || userId;
   }
 
+  const getUserImgUrl = (userId) => {
+    const userData = find(users, (uObj) => (uObj?._id == userId));
+    return userData?.img || "https://crowd-literature.eu/wp-content/uploads/2015/01/no-avatar.gif"
+  }
+
   const Button = ({ type }) => {
     return <button className={"widgetLgButton " + type}>{type}</button>;
   };
@@ -50,7 +55,7 @@ export default function WidgetLg() {
           <tr className="widgetLgTr">
             <td className="widgetLgUser">
               <img
-                src="https://images.pexels.com/photos/4172933/pexels-photo-4172933.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                src={getUserImgUrl(orderObj?.userId)}
                 alt=""
                 className="widgetLgImg"
               />
