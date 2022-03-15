@@ -1,6 +1,7 @@
 import "./widgetLg.css";
 import { useState, useEffect } from "react";
 import { userRequest } from "../../requestMethods";
+import moment from 'moment';
 
 export default function WidgetLg() {
   const [orders, setOrders] = useState([]);
@@ -8,7 +9,7 @@ export default function WidgetLg() {
   useEffect(() => {
     const getOrders = async () => {
       try {
-        const res = await userRequest.get("orders/");
+        const res = await userRequest.get("orders");
         setOrders(res.data);
       } catch (e) { console.log(e) };
     }
@@ -38,7 +39,7 @@ export default function WidgetLg() {
               />
               <span className="widgetLgName">{orderObj?.userId}</span>
             </td>
-            <td className="widgetLgDate">{orderObj?.createdAt}</td>
+            <td className="widgetLgDate">{moment(orderObj?.createdAt).fromNow()}</td>
             <td className="widgetLgAmount">${orderObj?.amount}</td>
             <td className="widgetLgStatus">
               <Button type={orderObj?.status} />
