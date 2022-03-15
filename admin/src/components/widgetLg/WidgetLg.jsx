@@ -2,19 +2,36 @@ import "./widgetLg.css";
 import { useState, useEffect } from "react";
 import { userRequest } from "../../requestMethods";
 import moment from 'moment';
+import { find } from "lodash";
 
 export default function WidgetLg() {
+  const [users, setUsers] = useState([]);
   const [orders, setOrders] = useState([]);
 
+
+  const getOrders = async () => {
+    try {
+      const res = await userRequest.get("orders");
+      setOrders(res.data);
+    } catch (e) { console.log(e) };
+  }
+
+  const getUsers = async () => {
+    try {
+      const res = await userRequest.get("users");
+      setUsers(res.data);
+    } catch (e) { };
+  }
+
   useEffect(() => {
-    const getOrders = async () => {
-      try {
-        const res = await userRequest.get("orders");
-        setOrders(res.data);
-      } catch (e) { console.log(e) };
-    }
     getOrders();
+    getUsers();
   }, []);
+
+  const getUserName = (userId) => {
+    const userData = find(users,(uObj)=>(uObj?._id==userId));
+    return userData?.username || userId;
+  }
 
   const Button = ({ type }) => {
     return <button className={"widgetLgButton " + type}>{type}</button>;
@@ -37,7 +54,7 @@ export default function WidgetLg() {
                 alt=""
                 className="widgetLgImg"
               />
-              <span className="widgetLgName">{orderObj?.userId}</span>
+              <span className="widgetLgName">{getUserName(orderObj?.userId)}</span>
             </td>
             <td className="widgetLgDate">{moment(orderObj?.createdAt).fromNow()}</td>
             <td className="widgetLgAmount">${orderObj?.amount}</td>
