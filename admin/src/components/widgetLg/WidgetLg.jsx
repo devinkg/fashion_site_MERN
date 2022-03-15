@@ -29,7 +29,7 @@ export default function WidgetLg() {
   }, []);
 
   const getUserName = (userId) => {
-    const userData = find(users,(uObj)=>(uObj?._id==userId));
+    const userData = find(users, (uObj) => (uObj?._id == userId));
     return userData?.username || userId;
   }
 
