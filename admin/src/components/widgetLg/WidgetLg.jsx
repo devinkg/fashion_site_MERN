@@ -51,8 +51,8 @@ export default function WidgetLg() {
           <th className="widgetLgTh">Amount</th>
           <th className="widgetLgTh">Status</th>
         </tr>
-        {orders?.map((orderObj, i) => (
-          <tr className="widgetLgTr" key={i}>
+        {orders?.map((orderObj) => (
+          <tr className="widgetLgTr" key={orderObj?._id}>
             <td className="widgetLgUser">
               <img
                 src={getUserImgUrl(orderObj?.userId)}
