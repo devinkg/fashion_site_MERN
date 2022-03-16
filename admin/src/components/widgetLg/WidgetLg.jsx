@@ -29,12 +29,12 @@ export default function WidgetLg() {
   }, []);
 
   const getUserName = (userId) => {
-    const userData = find(users, (uObj) => (uObj?._id == userId));
+    const userData = find(users, (uObj) => (uObj?._id === userId));
     return userData?.username || userId;
   }
 
   const getUserImgUrl = (userId) => {
-    const userData = find(users, (uObj) => (uObj?._id == userId));
+    const userData = find(users, (uObj) => (uObj?._id === userId));
     return userData?.img || "https://crowd-literature.eu/wp-content/uploads/2015/01/no-avatar.gif"
   }
 
