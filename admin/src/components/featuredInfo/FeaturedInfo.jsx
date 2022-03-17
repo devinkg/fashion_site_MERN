@@ -34,7 +34,11 @@ export default function FeaturedInfo() {
         <div className="featuredMoneyContainer">
           <span className="featuredMoney">${income && Number(income[income?.length - 1]?.total || 0)}</span>
           <span className="featuredMoneyRate">
-            %{perc} <ArrowDownward className="featuredIcon negative" />
+            %{Number(perc).toFixed(2)}{" "}
+            {perc < 0 ?
+              (<ArrowDownward className="featuredIcon negative" />) :
+              (<ArrowUpward className="featuredIcon" />)}
+
           </span>
         </div>
         <span className="featuredSub">Compared to last month</span>
