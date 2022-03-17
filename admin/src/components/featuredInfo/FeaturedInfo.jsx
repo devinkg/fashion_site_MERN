@@ -38,7 +38,6 @@ export default function FeaturedInfo() {
             {perc < 0 ?
               (<ArrowDownward className="featuredIcon negative" />) :
               (<ArrowUpward className="featuredIcon" />)}
-
           </span>
         </div>
         <span className="featuredSub">Compared to last month</span>
