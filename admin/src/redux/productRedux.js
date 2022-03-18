@@ -14,12 +14,12 @@ export const productSlice = createSlice({
             state.error = false
         },
         getProductSuccess: (state, action) => {
-            state.isFetching=false;
-            state.products=action.payload;
+            state.isFetching = false;
+            state.products = action.payload;
         },
-        getProductFailure:(state)=>{
-            state.isFetching=false;
-            state.error=true;
+        getProductFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
         }
     }
 });
