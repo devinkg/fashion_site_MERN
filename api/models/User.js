@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema(
             type: Boolean,
             default: false,
         },
+        img: { type: String }
     },
     { timestamps: true } // timestamps is inbuilt function in mongoDB , it automatically generates record created Datetime and updated Datetime.
 );
