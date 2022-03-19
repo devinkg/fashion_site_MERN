@@ -11,7 +11,7 @@ export default function ProductList() {
   const [data, setData] = useState(productRows);
   const dispatch = useDispatch();
 
-  useEffect(()=>{
+  useEffect(() => {
     getProducts(dispatch)
   }, [dispatch])
 
