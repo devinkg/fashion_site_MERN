@@ -11,7 +11,7 @@ export const productSlice = createSlice({
         //GET ALL
         getProductStart: (state) => {
             state.isFetching = true;
-            state.error = false
+            state.error = false;
         },
         getProductSuccess: (state, action) => {
             state.isFetching = false;
