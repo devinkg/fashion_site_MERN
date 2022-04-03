@@ -13,8 +13,12 @@ import {
   Navigate
 } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const App = () => {
+  
+  useEffect(() => { document.title = "React Client App" }, []);
+
   const user = useSelector((state) => state?.user?.currentUser);
   return (
     <Router>
