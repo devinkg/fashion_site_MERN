@@ -30,7 +30,7 @@ export const productSlice = createSlice({
             state.isFetching = false;
             state.products.slice(
                 //2,1 //REFER https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
-                state.products.findIndex((item) => item._id === action.payload.id), 1
+                state.products.findIndex((item) => item._id === action.payload), 1
             )
         },
         deleteProductFailure: (state) => {
