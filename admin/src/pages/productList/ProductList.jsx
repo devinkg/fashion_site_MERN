@@ -4,12 +4,13 @@ import { DeleteOutline } from "@material-ui/icons";
 import { productRows } from "../../dummyData";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../redux/apiCalls";
 
 export default function ProductList() {
   const [data, setData] = useState(productRows);
   const dispatch = useDispatch();
+  const products = useSelector((state) => state?.product?.products);
 
   useEffect(() => {
     getProducts(dispatch)
@@ -20,7 +21,7 @@ export default function ProductList() {
   };
 
   const columns = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "_id", headerName: "ID", width: 220 },
     {
       field: "product",
       headerName: "Product",
@@ -29,12 +30,12 @@ export default function ProductList() {
         return (
           <div className="productListItem">
             <img className="productListImg" src={params.row.img} alt="" />
-            {params.row.name}
+            {params.row.title}
           </div>
         );
       },
     },
-    { field: "stock", headerName: "Stock", width: 200 },
+    { field: "inStock", headerName: "Stock", width: 200 },
     {
       field: "status",
       headerName: "Status",
@@ -68,9 +69,10 @@ export default function ProductList() {
   return (
     <div className="productList">
       <DataGrid
-        rows={data}
+        rows={products}
         disableSelectionOnClick
         columns={columns}
+        getRowId={(row)=>row._id}
         pageSize={8}
         checkboxSelection
       />
