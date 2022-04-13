@@ -37,11 +37,6 @@ export default function ProductList() {
     },
     { field: "inStock", headerName: "Stock", width: 200 },
     {
-      field: "status",
-      headerName: "Status",
-      width: 120,
-    },
-    {
       field: "price",
       headerName: "Price",
       width: 160,
