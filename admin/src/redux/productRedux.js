@@ -20,10 +20,33 @@ export const productSlice = createSlice({
         getProductFailure: (state) => {
             state.isFetching = false;
             state.error = true;
-        }
+        },
+        //DELETE
+        deleteProductStart: (state) => {
+            state.isFetching = true;
+            state.error = false;
+        },
+        deleteProductSuccess: (state, action) => {
+            state.isFetching = false;
+            state.products.slice(
+                //2,1 //REFER https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+                state.products.findIndex((item) => item._id === action.payload.id), 1
+            )
+        },
+        deleteProductFailure: (state) => {
+            state.isFetching = false;
+            state.error = true;
+        },
     }
 });
 
-export const { getProductStart, getProductSuccess, getProductFailure } = productSlice.actions;
+export const {
+    getProductStart,
+    getProductSuccess,
+    getProductFailure,
+    deleteProductStart,
+    deleteProductSuccess,
+    deleteProductFailure
+} = productSlice.actions;
 
 export default productSlice.reducer;
