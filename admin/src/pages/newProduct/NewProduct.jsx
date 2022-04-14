@@ -14,7 +14,12 @@ export default function NewProduct() {
 
   const handleCatg = (e) => {
     setCatg(e.target.value.split(","));
-   }
+  }
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    //TODO
+  }
 
   return (
     <div className="newProduct">
@@ -47,7 +52,7 @@ export default function NewProduct() {
             <option value={"false"}>No</option>
           </select>
         </div>
-        <button className="addProductButton">Create</button>
+        <button onClick={handleClick} className="addProductButton">Create</button>
       </form>
     </div>
   );
