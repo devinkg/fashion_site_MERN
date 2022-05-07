@@ -37,6 +37,7 @@ const App = () => {
         <Route element={<RegistrationFlow />}>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="*" element={<Navigate to="/login" replace />} />
         </Route>
 
         <Route element={<AuthenticationFlow />}>
@@ -47,6 +48,7 @@ const App = () => {
           <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/success" element={<Success />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
 
       </Routes>
