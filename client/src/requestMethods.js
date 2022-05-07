@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const BASE_URL = "http://localhost:5000/api/";
-const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
+const persistValues = localStorage?.getItem("persist:root");
+const TOKEN = persistValues && JSON.parse(JSON.parse(localStorage.getItem("persist:root"))?.user)
     ?.currentUser?.accessToken; //access token getting from web local storage , one of the best ways is using cookies in the video mentioning.
 
 export const publicRequest = axios.create({
