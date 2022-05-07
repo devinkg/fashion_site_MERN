@@ -10,32 +10,48 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
+  Outlet,
   Navigate
 } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
 const App = () => {
-  
+
   useEffect(() => { document.title = "React Client App" }, []);
 
   const user = useSelector((state) => state?.user?.currentUser);
+
+  const AuthenticationFlow = () => {
+    return user ? <Outlet /> : <Login />
+  }
+
+  const RegistrationFlow = () => {
+    return user ? <Navigate to="/" /> : <Outlet />
+  }
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
-        <Route path="/products" element={<ProductList />}>
-          <Route path=":category" element={<ProductList />} />
+
+        <Route element={<RegistrationFlow />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Route>
-        <Route path="/product/:id" element={<Product />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/success" element={<Success />} />
-        <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
-        <Route path="/register" element={user ? <Navigate to="/" /> : <Register />} />
+
+        <Route element={<AuthenticationFlow />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<ProductList />}>
+            <Route path=":category" element={<ProductList />} />
+          </Route>
+          <Route path="/product/:id" element={<Product />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/success" element={<Success />} />
+        </Route>
+
       </Routes>
     </Router>
   );
 };
-
 
 export default App;
