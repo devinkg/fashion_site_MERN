@@ -71,8 +71,17 @@ const MenuItem = styled.div`
     ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
+const UserDetails = styled.div`
+    font-size: 15px;
+    font-weight: 500;
+    color: gray;
+    margin-left: 25px;
+    ${mobile({ fontSize: "12px", marginLeft: "10px" })}
+`
+
 const Navbar = () => {
     const quantity = useSelector(state => state?.cart?.quantity);
+    const user = useSelector((state) => state?.user?.currentUser);
     return (
         <Container>
             <Wrapper>
@@ -88,21 +97,39 @@ const Navbar = () => {
                         <Logo>Dev.</Logo>
                     </Link>
                 </Center>
-                <Right>
-                    <Link to={"/register"} style={{ textDecoration: 'none', color:'black'}}>
-                        <MenuItem>REGISTER</MenuItem>
-                    </Link>
-                    <Link to={"/login"} style={{ textDecoration: 'none', color: 'black' }}>
-                        <MenuItem>SIGN IN</MenuItem>
-                    </Link>
-                    <Link to={"/cart"}>
-                        <MenuItem>
-                            <Badge badgeContent={quantity} color="primary">
-                                <ShoppingCartOutlined color="action" />
-                            </Badge>
-                        </MenuItem>
-                    </Link>
-                </Right>
+                {user ?
+                    <Right>
+                        <UserDetails>
+                            {`Hi, ${user?.username}`}
+                        </UserDetails>
+                        <UserDetails style={{ cursor: 'pointer' }}>
+                            LOG OUT
+                        </UserDetails>
+                        <Link to={"/cart"}>
+                            <MenuItem>
+                                <Badge badgeContent={quantity} color="primary">
+                                    <ShoppingCartOutlined color="action" />
+                                </Badge>
+                            </MenuItem>
+                        </Link>
+                    </Right>
+                    :
+                    <Right>
+                        <Link to={"/register"} style={{ textDecoration: 'none', color: 'gray' }}>
+                            <MenuItem>REGISTER</MenuItem>
+                        </Link>
+                        <Link to={"/login"} style={{ textDecoration: 'none', color: 'gray' }}>
+                            <MenuItem>SIGN IN</MenuItem>
+                        </Link>
+                        <Link to={"/cart"}>
+                            <MenuItem>
+                                <Badge badgeContent={quantity} color="primary">
+                                    <ShoppingCartOutlined color="action" />
+                                </Badge>
+                            </MenuItem>
+                        </Link>
+                    </Right>
+                }
             </Wrapper>
         </Container>
     )
